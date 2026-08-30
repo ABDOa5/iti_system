@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include '../config/db.php';
 
 if (isset($_GET['delete'])) {
@@ -44,7 +46,9 @@ $deps = mysqli_fetch_all($res, MYSQLI_ASSOC);
                 <td><?= htmlspecialchars($d['name']) ?></td>
                 <td><?= htmlspecialchars($d['description']) ?></td>
                 <td>
-                    <a href="list.php?delete=<?= $d['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Confirm Delete?')">Delete</a>
+                    <!-- <a href="list.php?delete=<?= $d['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Confirm Delete?')">Delete</a> -->
+                    <a href="edit.php?edit=<?= $d['id'] ?>" class="btn btn-warning btn-sm me-1">Edit</a>
+                    <a href="list.php?delete=<?= $d['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Delete?')">Delete</a>
                 </td>
             </tr>
             <?php endforeach; ?>

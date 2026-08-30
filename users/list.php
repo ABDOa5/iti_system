@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 include '../config/db.php';
 
 if (isset($_GET['delete'])) {
@@ -50,8 +53,11 @@ $users = mysqli_fetch_all($res, MYSQLI_ASSOC);
                     </span>
                 </td>
                 <td>
+                    <!-- <a href="list.php?delete=<?= $u['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Delete user?')">Delete</a> -->
+                    <a href="edit.php?edit=<?= $u['id'] ?>" class="btn btn-warning btn-sm me-1">Edit</a>
                     <a href="list.php?delete=<?= $u['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Delete user?')">Delete</a>
                 </td>
+                
             </tr>
             <?php endforeach; ?>
         </tbody>

@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include '../config/db.php';
 
 if (isset($_GET['delete'])) {
@@ -44,6 +46,8 @@ $courses = mysqli_fetch_all($res, MYSQLI_ASSOC);
                 <td><?= htmlspecialchars($c['name']) ?></td>
                 <td><?= $c['duration'] ?> Hours</td>
                 <td>
+                    <!-- <a href="list.php?delete=<?= $c['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a> -->
+                    <a href="edit.php?edit=<?= $c['id'] ?>" class="btn btn-warning btn-sm me-1">Edit</a>
                     <a href="list.php?delete=<?= $c['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
                 </td>
             </tr>

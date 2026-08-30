@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include '../config/db.php';
 if (isset($_GET['delete'])) {
     $stmt = $conn->prepare("DELETE FROM students WHERE id = ?");
@@ -32,8 +34,13 @@ $students = mysqli_fetch_all($res, MYSQLI_ASSOC);
                 <td><?= $s['age'] ?></td>
                 <td><?= htmlspecialchars($s['address']) ?></td>
                 <td><span class="badge bg-info text-dark"><?= htmlspecialchars($s['dept_name'] ?? 'None') ?></span></td>
-                <td><a href="list.php?delete=<?= $s['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Delete?')">Delete</a></td>
+                <td>
+                    <!-- <a href="list.php?delete=<?= $s['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Delete?')">Delete</a> -->
+                    <a href="edit.php?edit=<?= $s['id'] ?>" class="btn btn-warning btn-sm me-1">Edit</a>
+                    <a href="list.php?delete=<?= $s['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Delete?')">Delete</a>
+                </td>
             </tr>
+            
             <?php endforeach; ?>
         </tbody>
     </table>
